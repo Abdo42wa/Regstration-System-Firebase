@@ -9,7 +9,7 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import RegisterComplete from './pages/RegisterComplete'
 
-import {login} from './pages/redux/actions'
+import {login,logout} from './pages/redux/actions'
 import {Auth} from './firebase/firebase'
 
 import {useDispatch} from 'react-redux'
@@ -25,15 +25,18 @@ const dispatch = useDispatch()
           const idTokenResult = await user.getIdTokenResult()
             console.log('user======>', user)
           dispatch(login(user.email, idTokenResult.token));
+         
+      }else{
+        dispatch(logout())
       }
     });
 
     return () => unsubscribe ();
 
-  }, [])
+  }, [dispatch])
   return (
     <>
-        <Header />
+        <Header  />
         <ToastContainer/>
       <Switch>
         <Route path='/' component={Home} exact />

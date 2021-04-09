@@ -17,6 +17,7 @@ export const logout = () => (dispatch) => {
     try {
         dispatch({
             type: 'LOGOUT_USER',
+            payload: null
         })
     } catch (error) {
         
