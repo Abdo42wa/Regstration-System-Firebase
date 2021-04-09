@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import {Auth,googleAuthProvider} from '../firebase/firebase'
-import {login} from '../pages/redux/actions'
+import {login} from '../redux/actions'
 import {useDispatch} from 'react-redux'
 
 import {Button} from 'antd'
@@ -8,6 +8,7 @@ import { GoogleOutlined, LoginOutlined} from '@ant-design/icons';
 
 /// using react-toastify to make custom alart for the user
 import {toast} from 'react-toastify'
+import { Link } from 'react-router-dom'
 
 const Login = ({history}) => {
     const [email, setEmail]= useState('ae004869@gmail.com')
@@ -21,7 +22,7 @@ const Login = ({history}) => {
          const {user} = result;
          const idTokenResult = await user.getIdTokenResult();
             dispatch(login(user.email,idTokenResult.token))
-
+            toast.success('Welcome Backe');
             history.push('/')
         } catch (error) {
             toast.error(error.message)
@@ -73,7 +74,7 @@ const Login = ({history}) => {
                     className='mb-3'>
                     Login With Google
                     </Button>
-                   
+                   <Link to='/forgot/password'>Forgot password</Link>
                 </form>
             </div>
         </div>

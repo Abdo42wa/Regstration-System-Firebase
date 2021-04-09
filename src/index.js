@@ -9,7 +9,7 @@ import thunk from 'redux-thunk'
 import { createStore,applyMiddleware} from 'redux'
 import {Provider} from 'react-redux'
 import {composeWithDevTools} from 'redux-devtools-extension'
-import rootReducer from './pages/redux/index'
+import rootReducer from './redux/index'
 
 // store
 const middleware = [thunk] // thunk alow us to use asecny recuaste

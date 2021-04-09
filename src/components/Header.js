@@ -2,7 +2,7 @@ import React,{useState} from 'react'
 import {Link} from 'react-router-dom'
 import {useHistory} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
-import {logout} from '../pages/redux/actions'
+import {logout} from '../redux/actions'
 import { Menu } from 'antd';
 /// icon to use in the menu ex. "icon={<MailOutlined />}"
 import { AppstoreOutlined, SettingOutlined,UserOutlined, UserAddOutlined, LogoutOutlined } from '@ant-design/icons';
