@@ -1,3 +1,4 @@
+import React,{useEffect} from 'react'
 import {Switch,Route} from 'react-router-dom'
 /// using react-toastify to make custom alart for the user
 import { ToastContainer} from 'react-toastify'
@@ -8,7 +9,28 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import RegisterComplete from './pages/RegisterComplete'
 
+import {login} from './pages/redux/actions'
+import {Auth} from './firebase/firebase'
+
+import {useDispatch} from 'react-redux'
+
 const  App = () => {
+const dispatch = useDispatch()
+
+  useEffect(() => {
+
+    // to get the current user
+    const unsubscribe = Auth.onAuthStateChanged(async (user) => {
+      if (user) {
+          const idTokenResult = await user.getIdTokenResult()
+            console.log('user======>', user)
+          dispatch(login(user.email, idTokenResult.token));
+      }
+    });
+
+    return () => unsubscribe ();
+
+  }, [])
   return (
     <>
         <Header />
